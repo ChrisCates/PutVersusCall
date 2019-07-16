@@ -1,0 +1,16 @@
+<div class="ticker-header">
+  <div class="ticker-column">
+    <h3 routerLink="/ticker/{{this.search.result.symbol}}">
+      {{this.search.result.description}}
+      <span>(${{this.search.result.symbol}})</span>
+    </h3>
+  </div>
+  <div class="ticker-column">
+    <h4>Last Price</h4>
+    <h4 [class.red]="this.search.result.change < 0" [class.green]="this.search.result.change > 0">
+      {{this.search.result.last}} |
+      {{this.search.result.change}}
+      ({{this.search.result.change_percentage}}%)
+    </h4>
+  </div>
+</div>

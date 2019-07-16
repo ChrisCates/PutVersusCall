@@ -1,0 +1,11 @@
+@import "../../../template.scss";
+
+div.ticker-content {
+    display: flex;
+
+    app-ticker-strikes, app-ticker-chat, app-ticker-spread {
+        width: 100%;
+        display: none;
+        &.active { display: block; }
+    }
+}

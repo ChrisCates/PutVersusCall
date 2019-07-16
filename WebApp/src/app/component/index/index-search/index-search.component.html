@@ -1,0 +1,82 @@
+<div class="index-columns">
+  <div class="index-column">
+    <h2>Recent Votes</h2>
+
+    <div class="striker-list">
+      <div class="striker" *ngFor="let striker of this.index.strikes; let i = index;" routerLink="/ticker/{{striker.symbol.toUpperCase()}}">
+        <div class="striker-content">
+          <div class="striker-user">
+            <a class="striker-image">
+              <img [src]="this.session.photoUrl(striker.user.photo)"/>
+            </a>
+            <div class="striker-user-data">
+              <h4>
+                {{striker.user.username}}
+                <span>{{this.moment(striker.dateCreated).fromNow()}}</span>
+              </h4>
+              <p class="tagline">{{striker.user.tagline ? striker.user.tagline : '---'}}</p>
+            </div>
+          </div>
+          <div class="striker-info">
+            <p>voted {{striker.sentiment.toUpperCase()}}@{{striker.strike}}</p>
+            <p>for {{striker.symbol.toUpperCase()}} at expiry {{striker.expiry}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="index-column">
+    <h2>Recent Spreads</h2>
+    <div class="striker-list">
+      <div class="striker" *ngFor="let striker of this.index.spreads; let i = index;" routerLink="/spread/{{striker.symbol.toUpperCase()}}/{{striker._id}}">
+        <div class="striker-content">
+          <div class="striker-user">
+            <a class="striker-image">
+              <img [src]="this.session.photoUrl(striker.user.photo)"/>
+            </a>
+            <div class="striker-user-data">
+              <h4>
+                {{striker.user.username}}
+                <span>{{this.moment(striker.dateCreated).fromNow()}}</span>
+              </h4>
+              <p class="tagline">{{striker.user.tagline ? striker.user.tagline : '---'}}</p>
+            </div>
+          </div>
+          <div class="striker-info">
+            <p class="title">{{striker.title}}</p>
+            <p>{{striker.description}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="index-column">
+    <h2>Recent Comments</h2>
+    <div class="striker-list">
+      <div class="striker" *ngFor="let striker of this.index.chats; let i = index;" routerLink="/ticker/{{striker.symbol.toUpperCase()}}">
+        <div class="striker-content">
+          <div class="striker-user">
+            <a class="striker-image">
+              <img [src]="this.session.photoUrl(striker.user.photo)"/>
+            </a>
+            <div class="striker-user-data">
+              <h4>
+                {{striker.user.username}}
+                <span>{{this.moment(striker.dateCreated).fromNow()}}</span>
+              </h4>
+              <p class="tagline">{{striker.user.tagline ? striker.user.tagline : '---'}}</p>
+            </div>
+          </div>
+          <div class="striker-info">
+            <p class="metadata">
+              <span class="expiry" [class.active]="striker.expiry">{{striker.expiry}}</span>
+              <span class="expiry" [class.active]="striker.strategy">{{striker.strategy}}</span>
+              <span class="expiry" [class.active]="striker.sentiment">{{striker.sentiment}}</span>
+            </p>
+            <p>{{striker.message}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

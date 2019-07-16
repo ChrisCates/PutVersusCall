@@ -1,0 +1,76 @@
+@import "../../../template.scss";
+
+div.index-columns {
+    display: flex;
+    div.index-column {
+        width: calc(100% / 3);
+    }
+}
+
+h2 {
+    font-size: 32px;
+    font-weight: 300;
+    text-align: center;
+    margin: 0 0 15px 0;
+}
+
+div.striker-list {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 15px 0 45px 0;
+    div.striker {
+        background: $bg4;
+        width: 100%;
+        margin: 15px;
+        padding: 15px;
+        border-radius: 5px;
+        cursor: pointer;
+
+        div.striker-content {
+
+            div.striker-user {
+                display: flex;
+                align-items: center;
+            }
+
+            div.striker-info {
+                padding: 5px 0 0 50px;
+                p.title {
+                    font-size: 18px;
+                    font-weight: bold;
+                }
+            }
+
+            a.striker-image {
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                overflow: hidden;
+                border: 1px solid $fg1;
+                margin: 0 10px 0 0;
+                img { width: 100%; }
+            }
+
+            h4 {
+                font-size: 18px;
+                font-weight: 300;
+                span { font-size: 12px; font-weight: bold; }
+            }
+            p {
+                font-size: 12px;
+                &.tagline { font-weight: bold; }
+                &.metadata { display: flex; }
+                span {
+                    margin: 5px 10px 5px 0;
+                    padding: 5px 10px;
+                    background: $bg5;
+                    border-radius: 5px;
+                    display: none;
+                    &.active { display: flex; }
+                }
+            }
+        }
+    }
+}

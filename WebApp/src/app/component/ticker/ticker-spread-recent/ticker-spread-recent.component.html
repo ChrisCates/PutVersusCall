@@ -1,0 +1,20 @@
+<div class="created-spreads">
+  <div class="spread" *ngFor="let spread of this.spreads;">
+    <div class="spread-info">
+      <img [src]="this.session.photoUrl(spread.user.photo)"/>
+      <div>
+        <h4>
+          {{spread.title}}
+          <span>created {{this.moment(spread.dateCreated).fromNow()}}</span>
+        </h4>
+        <p>by {{spread.user.username}}</p>
+      </div>
+    </div>
+    <p>{{spread.description}}</p>
+    <div class="spread-buttons">
+      <a class="spread-button easing" routerLink="/spread/{{spread.symbol}}/{{spread._id}}">
+        View
+      </a>
+    </div>
+  </div>
+</div>

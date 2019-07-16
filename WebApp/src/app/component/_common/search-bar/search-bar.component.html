@@ -1,0 +1,18 @@
+<div class="index-search">
+  <input type="text" [(ngModel)]="this.search.symbolInput"/>
+
+  <div class="loading-message easing"
+  [class.red]="this.search.state.search.state === -1"
+  [class.active]="this.search.state.search.loading || this.search.state.search.state === -1"
+  >
+    <p class="easing">
+      {{this.search.state.search.message ? this.search.state.search.message : 'Loading'}}
+      <i class="fas fa-circle-notch easing loading-spinner"></i>
+    </p>
+  </div>
+
+
+  <a class="search-button easing" (click)="this.search.get()">
+    Search
+  </a>
+</div>

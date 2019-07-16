@@ -1,0 +1,17 @@
+<div class="created-spreads">
+  <div class="spread" *ngFor="let spread of this.spreads;">
+    <h4>
+      {{spread.title}}
+      <span>{{this.moment(spread.dateCreated).fromNow()}}</span>
+    </h4>
+    <p>{{spread.description}}</p>
+    <div class="spread-buttons">
+      <a class="spread-button easing">
+        Delete
+      </a>
+      <a class="spread-button easing" routerLink="/spread/{{spread.symbol}}/{{spread._id}}">
+        View
+      </a>
+    </div>
+  </div>
+</div>

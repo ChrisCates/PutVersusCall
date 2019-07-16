@@ -1,0 +1,65 @@
+<div class="container">
+  <div class="wrap">
+    <app-ticker-header></app-ticker-header>
+
+    <div class="title">
+      <img [src]="this.session.photoUrl(this.spread.spread.user.photo)"/>
+      <h2>
+        {{this.spread.spread.title}}
+        <br/>
+        <span>
+          by {{this.spread.spread.user.username}},
+          created {{this.moment(this.spread.spread.dateCreated).fromNow()}}
+        </span>
+      </h2>
+    </div>
+
+    <p class="expiry">
+      <span>Expiry</span> {{this.spread.spread.expiry}}
+    </p>
+
+    <p class="description">{{this.spread.spread.description}}</p>
+
+    <div class="spread-data">
+      <div class="strike-prices">
+        <div class="strike-price easing" *ngFor="let strike of this.spread.strikes">
+          <a class="sp-button easing" [class.active-red]="this.position(strike, 'put') === 'SELL'" [class.active-green]="this.position(strike, 'put') === 'BUY'">
+            {{this.position(strike, 'put')}}
+          </a>
+          <a class="sp-button easing">
+            {{this.amount(strike, 'put')}} Puts
+          </a>
+          <p class="sp">{{strike.strike}}</p>
+          <a class="sp-button easing">
+            {{this.amount(strike, 'call')}} Calls
+          </a>
+          <a class="sp-button easing" [class.active-red]="this.position(strike, 'call') === 'SELL'" [class.active-green]="this.position(strike, 'call') === 'BUY'">
+            {{this.position(strike, 'call')}}
+          </a>
+        </div>
+      </div>
+      <div class="comments-section">
+        <div class="write-comment">
+          <p>Write a comment</p>
+          <textarea [(ngModel)]="this.spread.messageInput"></textarea>
+          <a class="comment-button easing" (click)="this.spread.submitMessage()">
+            Comment
+          </a>
+        </div>
+
+        <div class="comment" *ngFor="let message of this.spread.messages;">
+          <div class="comment-title">
+            <img [src]="this.session.photoUrl(message.user.photo)"/>
+            <h4>
+                {{message.user.username}}
+                <br/>
+                <span>{{message.user.tagline}}</span>,
+                <span>{{this.moment(message.dateCreated).fromNow()}}</span>
+            </h4>
+          </div>
+          <p>{{message.message}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

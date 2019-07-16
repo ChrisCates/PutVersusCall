@@ -1,0 +1,11 @@
+<div class="container">
+  <div class="wrap">
+    <app-ticker-header></app-ticker-header>
+    <app-ticker-options></app-ticker-options>
+    <div class="ticker-content">
+      <app-ticker-chat [class.active]="this.ticker.tab === 'conversation'"></app-ticker-chat>
+      <app-ticker-strikes [class.active]="this.ticker.tab === 'options'"></app-ticker-strikes>
+      <app-ticker-spread [class.active]="this.ticker.tab === 'spreads'"></app-ticker-spread>
+    </div>
+  </div>
+</div>

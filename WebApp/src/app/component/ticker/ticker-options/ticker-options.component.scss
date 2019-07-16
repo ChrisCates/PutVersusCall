@@ -1,0 +1,21 @@
+@import "../../../template.scss";
+
+div.options-option-wrap {
+    display: flex;
+    align-items: center;
+    height: 50px;
+    padding: 0 7.5px;
+
+    a.options-option {
+        display: flex;
+        align-items: center;
+        padding: 0 15px;
+        margin: 0 7.5px;
+        height: 40px;
+        background: $bg3;
+        border-radius: 5px;
+        cursor: pointer;
+        &:hover { background: $bg2; }
+        &.active { background: $bg5; }
+    }
+}

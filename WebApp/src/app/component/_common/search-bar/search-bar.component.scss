@@ -1,0 +1,63 @@
+@import "../../../template.scss";
+
+div.index-search {
+    display: flex;
+    justify-content: center;
+    margin: 15px;
+    width: calc(100% - 30px);
+    position: relative;
+
+    input {
+        width: 240px;
+        max-width: calc(100% - 195px);
+        height: 40px;
+        border-radius: 5px;
+        background: $bg2;
+        color: $fg1;
+        border: none;
+        margin: 0 15px 0 0;
+        font-size: 18px;
+        padding: 0 15px;
+        text-align: center;
+    }
+
+    i {
+        position: relative;
+        top: 1px;
+        animation: rotate;
+        animation-duration: 2.5s;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+    }
+
+    div.loading-message {
+        position: absolute;
+        bottom: -40px;
+        left: calc(50% - 160px);
+        width: 320px;
+        height: 30px;
+        border-radius: 5px;
+        background: $bg4;
+        color: $fg1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        pointer-events: none;
+        &.active { opacity: 1; }
+        &.red { color: $red; }
+    }
+
+    a.search-button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 180px;
+        height: 40px;
+        border-radius: 5px;
+        background: $bg2;
+        color: $fg1;
+        cursor: pointer;
+        &:hover { background: $bg5; }
+    }
+}

@@ -1,0 +1,134 @@
+@import "../../../template.scss";
+
+h2 {
+    font-size: 32px;
+    font-weight: 300;
+    text-align: center;
+    padding: 30px 0;
+}
+
+div.search-result {
+    margin: 15px auto;
+    width: calc(100% - 30px);
+    max-width: $tablet;
+    padding: 30px;
+    border-radius: 5px;
+    background: $bg3;
+    position: relative;
+    overflow: hidden;
+
+    div.search-loading {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background: $bg5;
+        z-index: 11;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        pointer-events: none;
+        &.active {
+            opacity: 1;
+            pointer-events: inherit;
+        }
+    }
+
+    div.search-result-header {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        h3 {
+            font-size: 32px;
+            font-weight: 400;
+            span {
+                font-size: 18px;
+                font-weight: bold;
+            }
+        }
+
+        div.rr {
+            padding: 0 30px;
+            h4:nth-of-type(1) {
+                font-weight: 400;
+            }
+            h4:nth-of-type(2) {
+                font-size: 18px;
+            }
+        }
+    }
+
+    div.result-row {
+        display: flex;
+        align-items: center;
+        border-top: 2px solid $bg5;
+        border-bottom: 2px solid $bg5;
+        margin: 15px 0;
+
+        &.rr-center {
+            justify-content: center;
+        }
+
+        a.view-button {
+            margin: 15px;
+            width: 180px;
+            height: 40px;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content :center;
+            background: $bg4;
+            color: $fg1;
+            cursor: pointer;
+            &:hover {
+                background: $bg5;
+            }
+        }
+
+        div.ohlc {
+            display: flex;
+            align-items: center;
+            &.ohlc-50 {
+                width: 100%;
+                div.ohlc-i {
+                    width: 50%;
+                }
+            }
+            &.ohlc-25 {
+                width: 100%;
+                div.ohlc-i {
+                    width: 25%;
+                }
+            }
+            div.ohlc-i {
+                padding: 15px;
+                p:nth-of-type(1) {
+                    font-size: 12px;
+                    font-weight: bold;
+                    margin: 0 0 5px 0;
+                }
+                p:nth-of-type(2) {
+                    font-size: 18px;
+                    font-weight: 400;
+                }
+            }
+        }
+
+        div.r-data {
+            padding: 15px;
+            width: 25%;
+            p:nth-of-type(1) {
+                font-size: 12px;
+                font-weight: bold;
+                margin: 0 0 5px 0;
+            }
+            p:nth-of-type(2) {
+                font-size: 18px;
+                font-weight: 400;
+            }
+        }
+    }
+}

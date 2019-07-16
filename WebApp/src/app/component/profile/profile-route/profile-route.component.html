@@ -1,0 +1,131 @@
+<div class="container">
+  <div class="wrap">
+    <h2>My Profile</h2>
+
+    <div class="profile-input">
+      <a class="profile-photo">
+        <img [src]="this.session.photoUrl(this.profile.data.photo)"/>
+      </a>
+      <input type="file" name="photo" accept="image/*" id="photo-input"/>
+      <a class="change-profile-photo easing" (click)="this.click();">
+        Change Photo
+      </a>
+    </div>
+
+    <div class="profile-input-fields">
+
+      <div class="profile-input-field">
+        <p>
+          Username
+          <i class="fas fa-circle-notch easing loading-spinner" [class.active]="this.profile.state.username.loading"></i>
+        </p>
+        <input type="text" [(ngModel)]="this.profile.data.username" (input)="this.profile.validate('username')"/>
+        <p class="input-state"
+        [class.red]="this.profile.state.username.state === -1"
+        [class.green]="this.profile.state.username.state === 1"
+        [class.active]="this.profile.state.username.state !== 0">
+          {{this.profile.state.username.message}}
+        </p>
+      </div>
+
+      <div class="profile-input-field">
+        <p>Name (optional)</p>
+        <input type="text" [(ngModel)]="this.profile.data.name"/>
+      </div>
+
+      <div class="profile-input-field">
+        <p>
+          Email (optional)
+          <i class="fas fa-circle-notch easing loading-spinner" [class.active]="this.profile.state.email.loading"></i>
+        </p>
+        <input type="text" [(ngModel)]="this.profile.data.email" (input)="this.profile.validate('email')"/>
+        <p class="input-state"
+        [class.red]="this.profile.state.email.state === -1"
+        [class.green]="this.profile.state.email.state === 1"
+        [class.active]="this.profile.state.email.state !== 0">
+          {{this.profile.state.email.message}}
+        </p>
+      </div>
+
+      <div class="profile-input-field">
+        <p>Tagline (optional)</p>
+        <input type="text" [(ngModel)]="this.profile.data.tagline"/>
+      </div>
+
+    </div>
+
+    <div class="profile-update-button">
+      <p class="loading easing" [class.active]="this.profile.state.submit.loading">
+        Loading
+        <i class="fas fa-circle-notch"></i>
+      </p>
+      <a class="update-button easing" (click)="this.profile.submit()">
+        Update
+      </a>
+    </div>
+
+    <p class="input-state"
+    [class.red]="this.profile.state.submit.state === -1"
+    [class.green]="this.profile.state.submit.state === 1"
+    [class.active]="this.profile.state.submit.state !== 0">
+      {{this.profile.state.submit.message}}
+    </p>
+
+    <h2>Change Password</h2>
+
+    <div class="profile-input-fields">
+
+      <div class="profile-input-field">
+        <p>Current Password</p>
+        <input type="password" [(ngModel)]="this.profile.resetPassword.oldPassword"/>
+      </div>
+
+      <div class="profile-input-field">
+        <p>
+          New Password
+          <i class="fas fa-circle-notch easing loading-spinner" [class.active]="this.profile.state.password.loading"></i>
+        </p>
+        <input type="password" [(ngModel)]="this.profile.resetPassword.password" (input)="this.profile.validatePassword('password')"/>
+        <p class="input-state"
+        [class.red]="this.profile.state.password.state === -1"
+        [class.green]="this.profile.state.password.state === 1"
+        [class.active]="this.profile.state.password.state !== 0">
+          {{this.profile.state.password.message}}
+        </p>
+      </div>
+
+      <div class="profile-input-field full">
+        <p>
+          Confirm Password
+          <i class="fas fa-circle-notch easing loading-spinner" [class.active]="this.profile.state.confirmPassword.loading"></i>
+        </p>
+        <input type="password" [(ngModel)]="this.profile.resetPassword.confirmPassword" (input)="this.profile.validatePassword('confirmPassword')"/>
+        <p class="input-state"
+        [class.red]="this.profile.state.confirmPassword.state === -1"
+        [class.green]="this.profile.state.confirmPassword.state === 1"
+        [class.active]="this.profile.state.confirmPassword.state !== 0">
+          {{this.profile.state.confirmPassword.message}}
+        </p>
+      </div>
+    </div>
+
+    <div class="profile-update-button">
+      <p class="loading easing" [class.active]="this.profile.state.reset.loading">
+        Loading
+        <i class="fas fa-circle-notch"></i>
+      </p>
+      <a class="update-button easing" (click)="this.profile.submitPassword()">
+        Change
+      </a>
+    </div>
+
+    <p class="input-state"
+    [class.red]="this.profile.state.reset.state === -1"
+    [class.green]="this.profile.state.reset.state === 1"
+    [class.active]="this.profile.state.reset.state !== 0">
+      {{this.profile.state.reset.message}}
+    </p>
+
+
+  </div>
+</div>

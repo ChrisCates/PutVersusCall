@@ -1,0 +1,93 @@
+<div class="index-wrap easing" [class.active]="this.index.popup">
+  <div class="index-form">
+    <a class="close-button easing" (click)="this.index.popup = false;">
+      Close
+    </a>
+
+    <div class="index-form-tabs">
+      <a class="tab easing" [class.active]="!this.index.tab" (click)="this.index.tab = false;">
+        Sign Up
+      </a>
+      <a class="tab easing" [class.active]="this.index.tab" (click)="this.index.tab = true;">
+        Login
+      </a>
+    </div>
+
+    <p>
+      Username
+      <i class="fas fa-circle-notch easing loading-spinner" [class.active]="this.index.state.username.loading"></i>
+    </p>
+    <input type="text" [(ngModel)]="this.index.form.username" (input)="this.index.validate('username')"/>
+    <p class="input-state"
+    [class.red]="this.index.state.username.state === -1"
+    [class.green]="this.index.state.username.state === 1"
+    [class.active]="this.index.state.username.state !== 0">
+      {{this.index.state.username.message}}
+    </p>
+    <p>
+      Password
+      <i class="fas fa-circle-notch easing loading-spinner" [class.active]="this.index.state.password.loading"></i>
+    </p>
+    <input type="password" [(ngModel)]="this.index.form.password" (input)="this.index.validate('password')"/>
+    <p class="input-state"
+    [class.red]="this.index.state.password.state === -1"
+    [class.green]="this.index.state.password.state === 1"
+    [class.active]="this.index.state.password.state !== 0">
+      {{this.index.state.password.message}}
+    </p>
+
+    <div class="hidden easing" [class.active]="this.index.tab">
+      <p>Confirm Password</p>
+      <input type="password" [(ngModel)]="this.index.form.confirmPassword" (input)="this.index.validate('confirmPassword')"/>
+      <p class="input-state"
+      [class.red]="this.index.state.confirmPassword.state === -1"
+      [class.green]="this.index.state.confirmPassword.state === 1"
+      [class.active]="this.index.state.confirmPassword.state !== 0">
+      {{this.index.state.confirmPassword.message}}
+      </p>
+    </div>
+
+
+    <div class="index-button-wrap">
+      <p class="loading easing" [class.active]="this.index.state.submit.loading">
+        Loading
+        <i class="fas fa-circle-notch"></i>
+      </p>
+      <a class="index-button easing" (click)="this.index.submit()">
+        <span class="text easing" [class.active]="!this.index.tab">Sign Up</span>
+        <span class="text easing" [class.active]="this.index.tab">Login</span>
+      </a>
+    </div>
+
+    <p class="input-state"
+    [class.red]="this.index.state.submit.state === -1"
+    [class.green]="this.index.state.submit.state === 1"
+    [class.active]="this.index.state.submit.state !== 0">
+    {{this.index.state.submit.message}}
+    </p>
+  </div>
+</div>
+<!--
+<div class="profile" [class.hide]="!this.session.active">
+  <div class="profile-heading">
+    <a class="profile-photo">
+      <img [src]="this.session.photoUrl(this.session.data.photo)"/>
+    </a>
+    <div class="profile-text">
+      <h4>logged in as {{this.session.data.username}}</h4>
+      <p>{{this.session.data.tagline}}</p>
+    </div>
+  </div>
+  <div class="profile-options">
+    <a class="profile-option easing" routerLink="/profile">
+      Edit Profile
+    </a>
+    <a class="profile-option easing" routerLink="/search">
+      Search
+    </a>
+    <a class="profile-option easing" (click)="this.session.logout()">
+      Logout
+    </a>
+  </div>
+</div>
+-->

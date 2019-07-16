@@ -1,0 +1,88 @@
+@import "../../../template.scss";
+
+header {
+    width: 100%;
+    height: 70px;
+    background: $bg2;
+
+    div.wrap {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        height: 100%;
+        position: relative;
+
+        a {
+            display: flex;
+            align-items: center;
+            color: $fg1;
+        }
+
+        img {
+            width: 90px;
+        }
+
+        h1 {
+            font-size: 18px;
+            font-weight: 300;
+            padding: 0 30px;
+        }
+
+        div.menu {
+            display: flex;
+            align-items: center;
+            height: 100%;
+        }
+
+        a.menu-item {
+            display: none;
+            &.active { display: flex; }
+            align-items: center;
+            justify-content: center;
+            margin: 0px 7.5px;
+            font-size: 18px;
+            border-radius: 5px;
+            padding: 5px 15px;
+            cursor: pointer;
+            color: $fg1;
+            i {
+                margin-left: 15px;
+                width: 25px;
+                text-align: right;
+            }
+            &:hover { background: $bg4; }
+        }
+
+        div.menu-toggle {
+            position: absolute;
+            right: 15px;
+            top: 70px;
+            background: $bg3;
+            width: 200px;
+            opacity: 0;
+            pointer-events: none;
+            &.active {
+                opacity: 1;
+                pointer-events: visible;
+            }
+
+            a.menu-item {
+                display: flex;
+                align-items: center;
+                justify-content: flex-end;
+                width: 100%;
+                height: 50px;
+                padding: 0 15px;
+                cursor: pointer;
+                color: $fg1;
+                i {
+                    margin-left: 15px;
+                    width: 25px;
+                    text-align: right;
+                }
+                &:hover { background: $bg4; }
+            }
+        }
+    }
+}

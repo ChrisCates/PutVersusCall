@@ -1,0 +1,23 @@
+<header>
+  <div class="wrap">
+    <a routerLink="/">
+      <img src="/assets/logo.png"/>
+      <h1>📉 Put versus Call 📈</h1>
+    </a>
+
+    <div class="menu">
+      <a class="menu-item easing active" routerLink="/">
+        Home
+        <i class="fas fa-home"></i>
+      </a>
+      <a class="menu-item easing" routerLink="/search" [class.active]="this.session.active">
+        Search
+        <i class="fas fa-search"></i>
+      </a>
+      <a class="menu-item easing" routerLink="/profile" [class.active]="this.session.active">
+        Profile
+        <i class="far fa-id-badge"></i>
+      </a>
+    </div>
+  </div>
+</header>

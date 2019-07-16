@@ -1,0 +1,23 @@
+<div class="container">
+  <div class="wrap">
+    <div class="index-heading">
+      <h1>📉 Put versus Call 📈</h1>
+      <h2>A place to discuss stock prices and their option chains</h2>
+    </div>
+
+    <div class="index-buttons">
+      <a class="index-button easing" (click)="this.index.popup = true; this.index.tab = true;">
+        Login
+      </a>
+      <a class="index-button easing" (click)="this.index.popup = true; this.index.tab = false;">
+        Register
+      </a>
+      <a class="index-button easing" routerLink="/search">
+        Search
+      </a>
+    </div>
+
+    <app-index-form></app-index-form>
+    <app-index-search></app-index-search>
+  </div>
+</div>

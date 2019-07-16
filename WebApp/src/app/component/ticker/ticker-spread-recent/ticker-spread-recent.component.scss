@@ -1,0 +1,64 @@
+@import "../../../template.scss";
+
+div.created-spreads {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+div.spread {
+    margin: 15px;
+    padding: 15px;
+    width: calc(50% - 30px);
+    border-radius: 5px;
+    background: $bg3;
+
+    div.spread-info {
+        display: flex;
+        align-items: center;
+        margin: 0 0 5px 0;
+
+        p {
+            font-weight: bold;
+        }
+    }
+
+    img {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        border: 2px solid $fg1;
+        margin: 0 15px 0 0;
+    }
+
+    h4 {
+        font-size: 24px;
+        margin: 5px 0 0 0;
+        span {
+            font-size: 14px;
+        }
+    }
+    p {
+        font-size: 14px;
+        margin: 0 0 10px 0;
+    }
+    div.spread-buttons {
+        display: flex;
+        justify-content: flex-end;
+        width: 100%;
+
+        a.spread-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 180px;
+            height: 40px;
+            font-size: 14px;
+            background: $bg2;
+            color: $fg1;
+            margin: 0 15px;
+            cursor: pointer;
+            font-size: 18px;
+            &:hover { background: $bg5; }
+        }
+    }
+}

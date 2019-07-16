@@ -1,0 +1,64 @@
+@import "../../../template.scss";
+
+div.spread-options {
+    display: flex;
+    align-items: center;
+    height: 70px;
+    padding: 0px 7.5px;
+
+    a.spread-option {
+        position: relative;
+        display: flex;
+        align-items: center;
+        padding: 0 15px;
+        margin: 0 7.5px;
+        height: 40px;
+        background: $bg3;
+        border-radius: 5px;
+        cursor: pointer;
+        &:hover { background: $bg2; }
+        &.active { background: $bg5; }
+
+        div.spread-select {
+            position: absolute;
+            left: 0;
+            top: 40px;
+            width: 100%;
+            border-radius: 5px;
+            background: $bg3;
+            overflow: hidden;
+            opacity: 0;
+            pointer-events: none;
+            &.active {
+                opacity: 1;
+                pointer-events: inherit;
+            }
+
+            a.select-option {
+                display: flex;
+                align-items: center;
+                width: 100%;
+                height: 30px;
+                padding: 0 10px;
+                &:hover { background: $bg5; }
+            }
+        }
+    }
+
+    &.smaller {
+        justify-content: center;
+        height: 50px;
+        a.spread-option {
+            height: 30px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+    }
+}
+
+app-ticker-spread-publish,
+app-ticker-spread-created,
+app-ticker-spread-recent {
+    display: none;
+    &.active { display: block; }
+}

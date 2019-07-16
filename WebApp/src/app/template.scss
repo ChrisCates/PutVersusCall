@@ -1,0 +1,51 @@
+$background: lighten(black, 10%);
+$foreground: white;
+
+$red: #E25822;
+$green: #00BC35;
+
+$bg1: $background;
+$bg2: lighten($bg1, 2.5%);
+$bg3: lighten($bg1, 5%);
+$bg4: lighten($bg1, 7.5%);
+$bg5: lighten($bg1, 10%);
+
+$fg1: $foreground;
+$fg2: darken($fg1, 2.5%);
+$fg3: darken($fg1, 5%);
+$fg4: darken($fg1, 7.5%);
+$fg5: darken($fg1, 10%);
+
+$desktop: 1200px;
+$tablet: 768px;
+$mobile: 480px;
+
+div.container {
+    width: 100%;
+    min-height: calc(100vh - 120px);
+    overflow: auto;
+}
+
+div.wrap {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+*.easing { transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1); }
+
+*.easing-250 { transition: all 0.25s cubic-bezier(0.165, 0.84, 0.44, 1); }
+*.easing-500 { transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1); }
+*.easing-750 { transition: all 0.75s cubic-bezier(0.165, 0.84, 0.44, 1); }
+*.easing-1000 { transition: all 1.0s cubic-bezier(0.165, 0.84, 0.44, 1); }
+
+@keyframes hover {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+
+@keyframes rotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}

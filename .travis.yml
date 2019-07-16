@@ -1,0 +1,11 @@
+language: node
+
+matrix:
+  include:
+    - os: linux
+
+services:
+  - docker
+
+script:
+  - docker build -t pvc Api

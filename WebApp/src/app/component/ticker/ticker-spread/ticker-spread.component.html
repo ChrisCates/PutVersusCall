@@ -1,0 +1,15 @@
+<div class="spread-options">
+  <a class="spread-option easing" (click)="this.tab = 'create'" [class.active]="this.tab === 'create'">
+    Create Spread
+  </a>
+  <a class="spread-option easing" (click)="this.tab = 'spreads'" [class.active]="this.tab === 'spreads'">
+    Your Spreads
+  </a>
+  <a class="spread-option easing" (click)="this.tab = 'recent'" [class.active]="this.tab === 'recent'">
+    Recent Spreads
+  </a>
+</div>
+
+<app-ticker-spread-publish [class.active]="this.tab === 'create'"></app-ticker-spread-publish>
+<app-ticker-spread-created [class.active]="this.tab === 'spreads'"></app-ticker-spread-created>
+<app-ticker-spread-recent [class.active]="this.tab === 'recent'"></app-ticker-spread-recent>

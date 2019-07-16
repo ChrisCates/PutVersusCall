@@ -1,0 +1,30 @@
+@import "../../../template.scss";
+
+footer {
+    width: 100%;
+    height: 50px;
+    background: $bg2;
+
+    div.wrap {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        height: 100%;
+    }
+
+    h1 {
+        font-size: 18px;
+        font-weight: 300;
+        padding: 15px 30px;
+    }
+
+    div.link-roll {
+        display: flex;
+        align-items: center;
+    }
+
+    a.link {
+        padding: 15px 30px;
+        color: $fg1;
+    }
+}

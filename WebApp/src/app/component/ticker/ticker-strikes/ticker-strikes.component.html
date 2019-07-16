@@ -1,0 +1,73 @@
+<div class="spread-options smaller">
+    <a class="spread-option easing" (click)="this.select.one = !this.select.one">
+        For Expiry: {{this.ticker.activeExpiry}}
+        <div class="spread-select easing" [class.active]="this.select.one">
+            <a
+            class="select-option easing"
+            *ngFor="let expiry of this.ticker.options.expiry"
+            (click)="this.ticker.activeExpiry = expiry; this.ticker.getStrikes();">{{expiry}}</a>
+        </div>
+    </a>
+    <a class="spread-option easing" (click)="this.ticker.options.itm = 4; this.ticker.sortStrikes();" [class.active]="this.ticker.options.itm === 4">
+        4 from ITM
+    </a>
+    <a class="spread-option easing" (click)="this.ticker.options.itm = 8; this.ticker.sortStrikes();" [class.active]="this.ticker.options.itm === 8">
+        8 from ITM
+    </a>
+    <a class="spread-option easing" (click)="this.ticker.options.itm = 16; this.ticker.sortStrikes();" [class.active]="this.ticker.options.itm === 16">
+        16 from ITM
+    </a>
+    <a class="spread-option easing" (click)="this.ticker.options.itm = -1; this.ticker.sortStrikes();" [class.active]="this.ticker.options.itm === -1">
+        All Strikes
+    </a>
+</div>
+
+<div class="strike-columns">
+    <div class="strike-prices">
+        <div class="strike-price easing" *ngFor="let strike of this.ticker.options.itmStrikes; let i = index;">
+            <p class="sp">{{strike}}</p>
+            <a class="sp-button easing" (click)="this.ticker.submitStrike(strike, 'call')">
+                Vote Call
+            </a>
+            <a class="sp-button easing" (click)="this.ticker.submitStrike(strike, 'put')">
+                Vote Put
+            </a>
+            <a class="sp-label easing">
+                {{this.ticker.strikeFilter(strike, 'call').length}} Call Votes
+            </a>
+            <a class="sp-label easing">
+                {{this.ticker.strikeFilter(strike, 'put').length}} Put Votes
+            </a>
+            <a class="sp-label easing">
+                Overall {{this.ticker.strikeSentiment(strike)}}
+            </a>
+        </div>
+    </div>
+    <div class="strike-stats">
+        <h3>
+            Stats
+            <span>for {{this.ticker.activeExpiry}}</span>
+        </h3>
+        <div class="stats">
+            <div class="stat">
+                <p class="label">Total Calls</p>
+                <p>{{this.ticker.strikeTotal('call')}}</p>
+            </div>
+            <div class="stat">
+                <p class="label">Average Vote Price</p>
+                <p>{{this.ticker.sentimentAverage('call').toFixed(2)}}</p>
+            </div>
+            <div class="stat">
+                <p class="label">Total Puts</p>
+                <p>{{this.ticker.strikeTotal('put')}}</p>
+            </div>
+            <div class="stat">
+                <p class="label">Average Vote Price</p>
+                <p>{{this.ticker.sentimentAverage('put').toFixed(2)}}</p>
+            </div>
+        </div>
+
+        <p class="label">Overall Sentiment</p>
+        <p class="large">{{this.ticker.overallSentiment()}}</p>
+    </div>
+</div>

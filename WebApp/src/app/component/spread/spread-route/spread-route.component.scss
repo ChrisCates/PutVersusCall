@@ -1,0 +1,138 @@
+@import "../../../template.scss";
+
+div.title {
+    display: flex;
+    align-items: center;
+}
+
+img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50px;
+    border: 2px solid $fg1;
+    margin: 15px 0 15px 30px;
+}
+
+h2 {
+    padding: 0 30px;
+    line-height: 1;
+    span {
+        font-weight: 400;
+        font-size: 14px;
+    }
+}
+
+p.description, p.expiry {
+    font-size: 18px;
+    padding: 0 30px 5px 100px;
+    span {
+        font-weight: bold;
+    }
+}
+
+div.spread-data {
+    display: flex;
+    div.strike-prices {
+        width: calc(100% - 480px);
+        padding: 15px;
+    }
+    div.comments-section {
+        width: 480px;
+    }
+}
+
+div.strike-price {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    padding: 15px 0;
+    input {
+        width: 90px;
+        height: 30px;
+        border-radius: 5px;
+        background: $bg2;
+        color: $fg1;
+        border: none;
+        font-size: 18px;
+        text-align: center;
+        padding-left: 5px;
+    }
+    p.sp {
+        font-size: 18px;
+        font-weight: bold;
+        padding: 0 15px;
+    }
+    a.sp-button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 90px;
+        height: 30px;
+        border-radius: 5px;
+        background: $bg3;
+        margin: 0 15px;
+        cursor: pointer;
+        &:hover { background: $bg2; }
+        &.active { background: $bg5; }
+        &.active-red { background: $red; }
+        &.active-green { background: $green; }
+    }
+}
+
+div.write-comment {
+    padding: 15px;
+    p {
+        margin: 0 0 5px 0;
+    }
+    textarea {
+        width: 100%;
+        height: 90px;
+        border-radius: 5px;
+        border: none;
+        background: $bg4;
+        color: $fg1;
+        padding: 10px;
+        font-size: 14px;
+    }
+    a.comment-button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 10px 0;
+        width: 100%;
+        height: 40px;
+        border-radius: 5px;
+        background: $bg3;
+        cursor: pointer;
+    }
+}
+
+div.comment {
+    margin: 15px;
+    width: calc(100% - 30px);
+    background: $bg3;
+    border-radius: 5px;
+    div.comment-title {
+        display: flex;
+        align-items: center;
+
+        img {
+            margin: 15px;
+        }
+
+        h4 {
+            font-size: 18px;
+            font-weight: 300;
+            line-height: 1;
+            span {
+                font-size: 12px;
+                font-weight: bold;
+            }
+        }
+    }
+
+    p {
+        padding: 0 15px 15px 15px;
+    }
+}

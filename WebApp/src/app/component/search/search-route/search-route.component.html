@@ -1,0 +1,78 @@
+<div class="container">
+  <div class="wrap">
+    <h2>Search</h2>
+    <app-search-bar></app-search-bar>
+
+    <div class="search-result">
+      <div class="search-loading easing" [class.active]="this.search.state.search.loading || this.search.state.search.state !== 1">
+        <h3>Look up a symbol</h3>
+      </div>
+
+      <div class="search-result-header">
+        <h3>
+          {{this.search.result.description}}
+          <span>({{this.search.result.symbol}})</span>
+        </h3>
+        <div class="rr">
+          <h4>Last Price</h4>
+          <h4>
+            {{this.search.result.last}} |
+            {{this.search.result.change}}
+            ({{this.search.result.change_percentage}}%)
+          </h4>
+        </div>
+      </div>
+      <!-- div.search-result-header -->
+      <div class="search-result-data">
+        <div class="result-row">
+          <div class="ohlc ohlc-25">
+            <div class="ohlc-i">
+              <p>Open</p>
+              <p>${{this.search.result.open}}</p>
+            </div>
+            <div class="ohlc-i">
+              <p>High</p>
+              <p>${{this.search.result.high}}</p>
+            </div>
+            <div class="ohlc-i">
+              <p>Low</p>
+              <p>${{this.search.result.low}}</p>
+            </div>
+            <div class="ohlc-i">
+              <p>Close</p>
+              <p>${{this.search.result.close}}</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="result-row">
+          <div class="r-data">
+            <p>Volume</p>
+            <p>{{this.search.result.volume}}</p>
+          </div>
+          <div class="r-data">
+            <p>Previous Close</p>
+            <p>${{this.search.result.prevclose}}</p>
+          </div>
+          <div class="r-data">
+            <p>52 Week Low</p>
+            <p>${{this.search.result.week_52_low}}</p>
+          </div>
+          <div class="r-data">
+            <p>52 Week High</p>
+            <p>${{this.search.result.week_52_high}}</p>
+          </div>
+        </div>
+
+        <div class="result-row rr-center">
+          <a class="view-button easing" routerLink="/ticker/{{this.search.result.symbol}}">
+            View
+          </a>
+        </div>
+      </div>
+
+    </div>
+    <!-- div.search-result -->
+
+  </div>
+</div>

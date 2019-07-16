@@ -1,0 +1,71 @@
+<div class="conversation-wrap">
+    <div class="chat-input">
+        <textarea [(ngModel)]="this.ticker.chatForm.message"></textarea>
+    </div>
+
+    <div class="chat-bar">
+        <a class="chat-input-button easing" (click)="this.select.one = !this.select.one">
+            {{this.ticker.chatForm.expiry ? this.ticker.chatForm.expiry : 'Choose Expiry'}}
+            <div class="chat-select easing" [class.active]="this.select.one">
+                <a
+                class="select-option easing"
+                *ngFor="let expiry of this.ticker.options.expiry"
+                (click)="this.ticker.chatForm.expiry = expiry">{{expiry}}</a>
+            </div>
+        </a>
+        <a class="chat-input-button easing" (click)="this.select.two = !this.select.two">
+            {{this.ticker.chatForm.strategy ? this.ticker.chatForm.strategy : 'Choose Strategy'}}
+            <div class="chat-select easing" [class.active]="this.select.two">
+                <a class="select-option easing" (click)="this.ticker.chatForm.strategy = 'Naked'">Naked</a>
+                <a class="select-option easing" (click)="this.ticker.chatForm.strategy = 'Covered'">Covered</a>
+                <a class="select-option easing" (click)="this.ticker.chatForm.strategy = 'Straddle'">Straddle</a>
+                <a class="select-option easing" (click)="this.ticker.chatForm.strategy = 'Strangle'">Strangle</a>
+                <a class="select-option easing" (click)="this.ticker.chatForm.strategy = 'Vertical'">Vertical</a>
+                <a class="select-option easing" (click)="this.ticker.chatForm.strategy = 'Diagnol'">Diagnol</a>
+                <a class="select-option easing" (click)="this.ticker.chatForm.strategy = 'Calendar'">Calendar</a>
+                <a class="select-option easing" (click)="this.ticker.chatForm.strategy = 'Condor'">Condor</a>
+                <a class="select-option easing" (click)="this.ticker.chatForm.strategy = 'Iron Condor'">Iron Condor</a>
+                <a class="select-option easing" (click)="this.ticker.chatForm.strategy = 'Butterfly'">Butterfly</a>
+                <a class="select-option easing" (click)="this.ticker.chatForm.strategy = 'Iron Butterfly'">Iron Butterfly</a>
+                <a class="select-option easing" (click)="this.ticker.chatForm.strategy = 'Synthetic'">Synthetic</a>
+                <a class="select-option easing" (click)="this.ticker.chatForm.strategy = 'Collar'">Collar</a>
+            </div>
+        </a>
+        <a class="chat-input-button easing" (click)="this.select.three = !this.select.three">
+            {{this.ticker.chatForm.sentiment ? this.ticker.chatForm.sentiment : 'Choose Sentiment'}}
+            <div class="chat-select easing" [class.active]="this.select.three">
+                <a class="select-option easing" (click)="this.ticker.chatForm.sentiment = 'Neutral'">Neutral</a>
+                <a class="select-option easing" (click)="this.ticker.chatForm.sentiment = 'Call'">Call</a>
+                <a class="select-option easing" (click)="this.ticker.chatForm.sentiment = 'Put'">Put</a>
+            </div>
+        </a>
+        <a class="chat-input-button easing" (click)="this.ticker.submitChat()">
+            Comment
+        </a>
+    </div>
+
+    <div class="chat-messages">
+        <div class="chat-message" *ngFor="let message of this.ticker.chat; let i = index;">
+            <div class="user">
+                <a class="user-photo">
+                    <img [src]="this.session.photoUrl(message.user.photo)"/>
+                </a>
+                <div class="user-text">
+                    <h4>
+                        {{message.user.username}}
+                        <span>{{message.user.tagline}}</span>,
+                        <span>{{this.moment(message.dateCreated).fromNow()}}</span>
+                    </h4>
+                    <p>
+                        <span class="expiry" [class.active]="message.expiry">{{message.expiry}}</span>
+                        <span class="expiry" [class.active]="message.strategy">{{message.strategy}}</span>
+                        <span class="expiry" [class.active]="message.sentiment">{{message.sentiment}}</span>
+                    </p>
+                </div>
+            </div>
+            <p class="message">
+                {{message.message}}
+            </p>
+        </div>
+    </div>
+</div>
