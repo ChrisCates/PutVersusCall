@@ -4,6 +4,8 @@ import { SessionService } from '../../../service/session.service';
 import { TickerService } from '../ticker.service';
 
 import * as moment from 'moment';
+import * as superagent from 'superagent';
+import { environment as env } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-ticker-chat',
@@ -24,11 +26,25 @@ export class TickerChatComponent implements OnInit {
 
   ngOnInit() { }
 
-  public setSentiment(sentiment = '') {
-    if (this.ticker.chatForm.sentiment === sentiment) {
-      this.ticker.chatForm.sentiment = '';
-    } else {
-      this.ticker.chatForm.sentiment = sentiment;
+  public async updateMessage(message) {
+    try {
+      await superagent
+        .patch(`${env.api}/chat`)
+        .send({ _id: message._id, message: message.editedMessage, })
+        .withCredentials();
+      message.message = message.editedMessage;
+      message.edit = false;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  public async deleteMessage(message, index) {
+    try {
+      await superagent.delete(`${env.api}/chat?_id=${message._id}`).withCredentials();
+      this.ticker.chat.splice(index, 1);
+    } catch (error) {
+      console.log(error);
     }
   }
 

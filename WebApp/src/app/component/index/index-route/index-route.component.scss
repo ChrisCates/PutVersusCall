@@ -21,7 +21,8 @@ div.index-heading {
 }
 
 div.index-buttons {
-    display: flex;
+    display: none;
+    &.visible { display: flex; }
     justify-content: center;
     padding: 15px 0 45px 0;
     a.index-button {

@@ -1,9 +1,9 @@
 <div class="conversation-wrap">
-    <div class="chat-input">
+    <div class="chat-input" [class.visible]="this.session.active">
         <textarea [(ngModel)]="this.ticker.chatForm.message"></textarea>
     </div>
 
-    <div class="chat-bar">
+    <div class="chat-bar" [class.visible]="this.session.active">
         <a class="chat-input-button easing" (click)="this.select.one = !this.select.one">
             {{this.ticker.chatForm.expiry ? this.ticker.chatForm.expiry : 'Choose Expiry'}}
             <div class="chat-select easing" [class.active]="this.select.one">
@@ -46,26 +46,52 @@
 
     <div class="chat-messages">
         <div class="chat-message" *ngFor="let message of this.ticker.chat; let i = index;">
-            <div class="user">
-                <a class="user-photo">
-                    <img [src]="this.session.photoUrl(message.user.photo)"/>
+            <a
+                class="chat-options easing"
+                (click)="message.options = !message.options;"
+                [class.active]="this.session.data._id === message.user._id">
+                <i class="fas fa-ellipsis-h"></i>
+            </a>
+            <div class="chat-menu easing" [class.active]="message.options" (click)="message.options = false;">
+                <a class="menu-option easing" (click)="message.edit = !message.edit; message.editedMessage = message.message;">
+                    Edit Comment
                 </a>
-                <div class="user-text">
-                    <h4>
-                        {{message.user.username}}
-                        <span>{{message.user.tagline}}</span>,
-                        <span>{{this.moment(message.dateCreated).fromNow()}}</span>
-                    </h4>
-                    <p>
-                        <span class="expiry" [class.active]="message.expiry">{{message.expiry}}</span>
-                        <span class="expiry" [class.active]="message.strategy">{{message.strategy}}</span>
-                        <span class="expiry" [class.active]="message.sentiment">{{message.sentiment}}</span>
-                    </p>
+                <a class="menu-option easing" (click)="this.deleteMessage(message, i);">
+                    Delete Comment
+                </a>
+            </div>
+
+            <a class="photo">
+                <img [src]="this.session.photoUrl(message.user.photo)"/>
+            </a>
+
+            <div class="text">
+                <h4>
+                    {{message.user.username}}
+                    <span>{{message.user.tagline}}</span>,
+                    <span>{{this.moment(message.dateCreated).fromNow()}}</span>
+                </h4>
+                <p>
+                    <span class="expiry" [class.active]="message.expiry">{{message.expiry}}</span>
+                    <span class="expiry" [class.active]="message.strategy">{{message.strategy}}</span>
+                    <span class="expiry" [class.active]="message.sentiment">{{message.sentiment}}</span>
+                </p>
+
+                <p class="message" [class.active]="!message.edit">
+                    {{message.message}}
+                </p>
+
+                <textarea [(ngModel)]="message.editedMessage" [class.active]="message.edit"></textarea>
+
+                <div class="update-buttons" [class.active]="message.edit">
+                    <a class="save-button easing" (click)="message.edit = false;">
+                        Cancel
+                    </a>
+                    <a class="save-button easing" (click)="this.updateMessage(message);">
+                        Update
+                    </a>
                 </div>
             </div>
-            <p class="message">
-                {{message.message}}
-            </p>
         </div>
     </div>
 </div>

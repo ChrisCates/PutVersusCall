@@ -8,4 +8,8 @@ services:
   - docker
 
 script:
+  # Test docker build
   - docker build -t pvc Api
+  # Run unit tests
+  - cd Api && npm install
+  - npm run test

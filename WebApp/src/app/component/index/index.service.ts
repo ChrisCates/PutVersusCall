@@ -202,6 +202,7 @@ export class IndexService {
     this.state.submit.loading = true;
     try {
       const payload = await superagent.post(`${env.api}/register`).send(this.form).withCredentials();
+      this.popup = false;
       this.reset();
       this.router.navigateByUrl('/profile');
     } catch (error) {
@@ -220,6 +221,7 @@ export class IndexService {
     this.state.submit.loading = true;
     try {
       const payload = await superagent.post(`${env.api}/login`).send(this.form).withCredentials();
+      this.popup = false;
       this.reset();
       this.router.navigateByUrl('/profile');
     } catch (error) {
@@ -257,6 +259,16 @@ export class IndexService {
         message: '',
       },
       strike: {
+        state: 0,
+        loading: false,
+        message: '',
+      },
+      spread: {
+        state: 0,
+        loading: false,
+        message: '',
+      },
+      chat: {
         state: 0,
         loading: false,
         message: '',

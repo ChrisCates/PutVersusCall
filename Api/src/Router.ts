@@ -48,13 +48,18 @@ export const TradierRoutes = [
 import {
     CreateChat,
     GetChat,
+    DeleteChat,
+    UpdateChat,
 } from './route/Chat.route';
 
 export const ChatRoutes = [
     { type: 'GET', path: '/chat', component: GetChat },
     { type: 'POST', path: '/chat', component: CreateChat, middleware: LoggedIn },
+    { type: 'PATCH', path: '/chat', component: UpdateChat, middleware: LoggedIn },
+    { type: 'DELETE', path: '/chat', component: DeleteChat, middleware: LoggedIn },
 ];
 
+// Strike Routes
 import {
     CreateStrike,
     GetStrikes,
@@ -67,25 +72,38 @@ export const StrikeRoutes = [
     { type: 'POST', path: '/strike', component: CreateStrike, middleware: LoggedIn },
 ];
 
+// Spread Routes
 import {
     CreateSpread,
     MySpreads,
     RecentSpreads,
     SpreadById,
+    UpdateSpread,
+    DeleteSpread,
 } from './route/Spread.route';
-
-import {
-    CreateSpreadChat,
-    GetSpreadChat,
-} from './route/Spread.chat.route';
 
 export const SpreadRoutes = [
     { type: 'POST', path: '/spread', component: CreateSpread, middleware: LoggedIn },
     { type: 'GET', path: '/spread', component: MySpreads, middleware: LoggedIn },
+    { type: 'PATCH', path: '/spread', component: UpdateSpread, middleware: LoggedIn },
+    { type: 'DELETE', path: '/spread', component: DeleteSpread, middleware: LoggedIn },
     { type: 'GET', path: '/spread/recent', component: RecentSpreads },
     { type: 'GET', path: '/spread/id/:_id', component: SpreadById },
+];
+
+// Spread Chat Routes
+import {
+    CreateSpreadChat,
+    GetSpreadChat,
+    UpdateSpreadChat,
+    DeleteSpreadChat,
+} from './route/Spread.chat.route';
+
+export const SpreadChatRoutes = [
     { type: 'POST', path: '/spread/chat', component: CreateSpreadChat, middleware: LoggedIn },
     { type: 'GET', path: '/spread/chat', component: GetSpreadChat },
+    { type: 'PATCH', path: '/spread/chat', component: UpdateSpreadChat },
+    { type: 'DELETE', path: '/spread/chat', component: DeleteSpreadChat },
 ];
 
 export function InitRoutes(app) {
@@ -95,4 +113,5 @@ export function InitRoutes(app) {
     RouteCollection(app, 'Chat', ChatRoutes);
     RouteCollection(app, 'Strike', StrikeRoutes);
     RouteCollection(app, 'Spread', SpreadRoutes);
+    RouteCollection(app, 'Spread Chat', SpreadChatRoutes);
 }

@@ -4,13 +4,16 @@ import { Router } from '@angular/router';
 import * as superagent from 'superagent';
 import { environment as env } from '../../environments/environment';
 
+import * as io from 'socket.io-client';
+
 @Injectable({
   providedIn: 'root'
 })
 export class SessionService {
 
-  public active = false;
+  public socket = io(`${env.api}`);
 
+  public active = false;
   public data = {
     _id: '',
     name: '',
@@ -28,7 +31,9 @@ export class SessionService {
     },
   };
 
-  constructor(private router: Router) { }
+  constructor(private router: Router) {
+    this.get();
+  }
 
   public photoUrl(url = null) {
     if (url) {

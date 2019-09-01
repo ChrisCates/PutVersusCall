@@ -322,7 +322,7 @@ export class TickerService {
         amount++;
       }
     });
-    return total / amount;
+    return total ? (total / amount) : 0;
   }
 
   public overallSentiment() {
@@ -389,6 +389,16 @@ export class TickerService {
       }
     }
     this.state.submitStrike.loading = false;
+  }
+
+  public isActiveStrike(strike, type = 'call') {
+    let active = false;
+    this.strikes.forEach(_strike => {
+      if (_strike.strike === strike && _strike.sentiment === type) {
+        active = true;
+      }
+    });
+    return active;
   }
 
   public updateExpiry(expiry) {

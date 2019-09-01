@@ -5,7 +5,7 @@
             <a
             class="select-option easing"
             *ngFor="let expiry of this.ticker.options.expiry"
-            (click)="this.ticker.activeExpiry = expiry; this.ticker.getStrikes();">{{expiry}}</a>
+            (click)="this.ticker.activeExpiry = expiry; this.ticker.getOptions();">{{expiry}}</a>
         </div>
     </a>
     <a class="spread-option easing" (click)="this.ticker.options.itm = 4; this.ticker.sortStrikes();" [class.active]="this.ticker.options.itm === 4">
@@ -26,10 +26,10 @@
     <div class="strike-prices">
         <div class="strike-price easing" *ngFor="let strike of this.ticker.options.itmStrikes; let i = index;">
             <p class="sp">{{strike}}</p>
-            <a class="sp-button easing" (click)="this.ticker.submitStrike(strike, 'call')">
+            <a class="sp-button easing" (click)="this.ticker.submitStrike(strike, 'call')" [class.active-green]="this.ticker.isActiveStrike(strike, 'call')">
                 Vote Call
             </a>
-            <a class="sp-button easing" (click)="this.ticker.submitStrike(strike, 'put')">
+            <a class="sp-button easing" (click)="this.ticker.submitStrike(strike, 'put')" [class.active-red]="this.ticker.isActiveStrike(strike, 'put')">
                 Vote Put
             </a>
             <a class="sp-label easing">

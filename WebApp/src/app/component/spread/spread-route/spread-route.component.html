@@ -12,13 +12,36 @@
           created {{this.moment(this.spread.spread.dateCreated).fromNow()}}
         </span>
       </h2>
+
+      <a class="spread-options easing" (click)="this.options = !this.options;" [class.active]="this.session.data._id === this.spread.spread.user._id">
+          <i class="fas fa-ellipsis-h"></i>
+      </a>
+      <div class="spread-menu easing" [class.active]="this.options" (click)="this.options = false;">
+        <a class="menu-option easing" (click)="this.edit = !this.edit; this.editedDescription = this.spread.spread.description;">
+            Edit Spread
+        </a>
+        <a class="menu-option easing" (click)="this.deleteSpread(this.spread.spread);">
+            Delete Spread
+        </a>
+      </div>
     </div>
 
-    <p class="expiry">
+    <p class="expiry pad-top active">
       <span>Expiry</span> {{this.spread.spread.expiry}}
     </p>
 
-    <p class="description">{{this.spread.spread.description}}</p>
+    <p class="description" [class.active]="!this.edit">{{this.spread.spread.description}}</p>
+
+    <textarea [(ngModel)]="this.editedDescription" class="spread-text" [class.active]="this.edit"></textarea>
+
+    <div class="update-buttons" [class.active]="this.edit">
+      <a class="save-button easing" (click)="this.edit = false;">
+          Cancel
+      </a>
+      <a class="save-button easing" (click)="this.updateSpread(this.spread.spread);">
+          Update
+      </a>
+    </div>
 
     <div class="spread-data">
       <div class="strike-prices">
@@ -39,7 +62,7 @@
         </div>
       </div>
       <div class="comments-section">
-        <div class="write-comment">
+        <div class="write-comment" [class.visible]="this.session.active">
           <p>Write a comment</p>
           <textarea [(ngModel)]="this.spread.messageInput"></textarea>
           <a class="comment-button easing" (click)="this.spread.submitMessage()">
@@ -47,17 +70,42 @@
           </a>
         </div>
 
-        <div class="comment" *ngFor="let message of this.spread.messages;">
-          <div class="comment-title">
+        <div class="comment" *ngFor="let message of this.spread.messages; let i = index;">
+          <a class="chat-options easing" (click)="message.options = !message.options;" [class.active]="this.session.data._id === message.user._id">
+              <i class="fas fa-ellipsis-h"></i>
+          </a>
+          <div class="chat-menu easing" [class.active]="message.options" (click)="message.options = false;">
+              <a class="menu-option easing" (click)="message.edit = !message.edit; message.editedMessage = message.message;">
+                  Edit Comment
+              </a>
+              <a class="menu-option easing" (click)="this.deleteMessage(message, i);">
+                  Delete Comment
+              </a>
+          </div>
+
+          <div class="photo">
             <img [src]="this.session.photoUrl(message.user.photo)"/>
+          </div>
+          <div class="text">
             <h4>
                 {{message.user.username}}
                 <br/>
                 <span>{{message.user.tagline}}</span>,
                 <span>{{this.moment(message.dateCreated).fromNow()}}</span>
             </h4>
+            <p [class.active]="!message.edit">{{message.message}}</p>
+
+            <textarea [(ngModel)]="message.editedMessage" [class.active]="message.edit"></textarea>
+
+            <div class="update-buttons" [class.active]="message.edit">
+              <a class="save-button easing" (click)="message.edit = false;">
+                  Cancel
+              </a>
+              <a class="save-button easing" (click)="this.updateMessage(message);">
+                  Update
+              </a>
+            </div>
           </div>
-          <p>{{message.message}}</p>
         </div>
       </div>
     </div>

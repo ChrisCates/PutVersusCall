@@ -51,6 +51,34 @@ export async function MySpreads(req, res) {
     return res.status(routeResponse.code).send(routeResponse);
 }
 
+export async function UpdateSpread(req, res) {
+    let routeResponse: Response = ResponseTemplate();
+
+    try {
+        routeResponse.response = await Spread.updateOne({ _id: req.body._id, user: req.session.user._id, }, req.body);
+    } catch (error) {
+        console.log(error);
+        routeResponse.code = 500;
+        routeResponse.message = Code(500);
+    }
+
+    return res.status(routeResponse.code).send(routeResponse);
+}
+
+export async function DeleteSpread(req, res) {
+    let routeResponse: Response = ResponseTemplate();
+
+    try {
+        routeResponse.response = await Spread.deleteOne({ _id: req.query._id, user: req.session.user._id, });
+    } catch (error) {
+        console.log(error);
+        routeResponse.code = 500;
+        routeResponse.message = Code(500);
+    }
+
+    return res.status(routeResponse.code).send(routeResponse);
+}
+
 export async function RecentSpreads(req, res) {
     let routeResponse: Response = ResponseTemplate();
 

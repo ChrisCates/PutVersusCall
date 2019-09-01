@@ -65,10 +65,10 @@ a.publish-button {
     align-items: center;
     justify-content: center;
     margin: 15px auto 30px auto;
-    width: 240px;
+    width: calc(100% - 30px);
     height: 60px;
     border-radius: 5px;
-    background: $bg2;
+    background: $bg4;
     cursor: pointer;
     font-size: 18px;
     font-weight: bold;
@@ -120,6 +120,8 @@ div.strike-price {
         font-size: 18px;
         font-weight: bold;
         padding: 0 15px;
+        width: 90px;
+        text-align: center;
     }
     a.sp-button {
         display: flex;

@@ -1,13 +1,15 @@
 {
   "name": "pvc-server",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "dist/Server.js",
   "license": "MIT",
   "scripts": {
     "start": "npm run build && npm run server",
     "dev": "nodemon",
     "build": "tsc --outDir dist",
-    "server": "node dist/Server.js"
+    "server": "node dist/Server.js",
+    "test": "npm run build && ./node_modules/.bin/mocha -r jscoverage -R mocha-lcov-reporter dist/test --covout=detail > codecov.lcov",
+    "codecov": "./node_modules/.bin/codecov --token=3d35e84c-a8c8-460e-a7a2-9387001ee6f3"
   },
   "dependencies": {
     "@sendgrid/mail": "^6.4.0",
@@ -17,6 +19,7 @@
     "aws-sdk": "^2.437.0",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",
+    "codecov": "^3.5.0",
     "colors": "^1.3.3",
     "connect-mongo": "^2.0.3",
     "express": "^4.16.4",
@@ -24,6 +27,9 @@
     "fs-jetpack": "^2.2.0",
     "hi-base32": "^0.5.0",
     "http": "^0.0.0",
+    "jscoverage": "^0.6.0",
+    "mocha": "^6.2.0",
+    "mocha-lcov-reporter": "^1.3.0",
     "moment": "^2.24.0",
     "mongoose": "^5.4.1",
     "morgan": "^1.9.1",

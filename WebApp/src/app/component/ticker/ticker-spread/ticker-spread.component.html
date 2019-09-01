@@ -1,11 +1,11 @@
 <div class="spread-options">
-  <a class="spread-option easing" (click)="this.tab = 'create'" [class.active]="this.tab === 'create'">
+  <a class="spread-option easing" [class.visible]="this.session.active" (click)="this.tab = 'create'" [class.active]="this.tab === 'create'">
     Create Spread
   </a>
-  <a class="spread-option easing" (click)="this.tab = 'spreads'" [class.active]="this.tab === 'spreads'">
+  <a class="spread-option easing" [class.visible]="this.session.active" (click)="this.tab = 'spreads'" [class.active]="this.tab === 'spreads'">
     Your Spreads
   </a>
-  <a class="spread-option easing" (click)="this.tab = 'recent'" [class.active]="this.tab === 'recent'">
+  <a class="spread-option easing visible" (click)="this.tab = 'recent'" [class.active]="this.tab === 'recent'">
     Recent Spreads
   </a>
 </div>

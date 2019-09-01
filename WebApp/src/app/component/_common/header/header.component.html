@@ -6,7 +6,7 @@
     </a>
 
     <div class="menu">
-      <a class="menu-item easing active" routerLink="/">
+      <a class="menu-item easing" routerLink="/" [class.active]="!this.session.active">
         Home
         <i class="fas fa-home"></i>
       </a>
@@ -17,6 +17,10 @@
       <a class="menu-item easing" routerLink="/profile" [class.active]="this.session.active">
         Profile
         <i class="far fa-id-badge"></i>
+      </a>
+      <a class="menu-item easing" (click)="this.session.logout()" [class.active]="this.session.active">
+        Logout
+        <i class="fas fa-sign-out-alt"></i>
       </a>
     </div>
   </div>

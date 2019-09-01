@@ -10,3 +10,6 @@ upload/*
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
+
+covreporter
+*.lcov

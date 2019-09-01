@@ -82,7 +82,8 @@ div.strike-columns {
             p.sp {
                 font-size: 18px;
                 font-weight: bold;
-                padding: 0 15px;
+                width: 90px;
+                padding: 0 0 0 15px;
             }
             a.sp-button {
                 display: flex;
@@ -96,6 +97,8 @@ div.strike-columns {
                 cursor: pointer;
                 &:hover { background: $bg2; }
                 &.active { background: $bg5; }
+                &.active-red { background: $red; }
+                &.active-green { background: $green; }
             }
             a.sp-label {
                 padding: 0 15px;

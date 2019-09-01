@@ -6,10 +6,6 @@
     <textarea [(ngModel)]="this.form.description"></textarea>
   </div>
 
-  <a class="publish-button easing" (click)="this.submit();">
-    Publish Spread
-  </a>
-
   <div class="spread-options smaller">
     <a class="spread-option easing" (click)="this.select.one = !this.select.one">
         For Expiry: {{this.form.expiry ? this.form.expiry : this.ticker.activeExpiry}}
@@ -17,7 +13,7 @@
             <a
             class="select-option easing"
             *ngFor="let expiry of this.ticker.options.expiry"
-            (click)="this.form.expiry = expiry;">{{expiry}}</a>
+            (click)="this.form.expiry = expiry; this.ticker.activeExpiry = expiry; this.ticker.getOptions();">{{expiry}}</a>
         </div>
     </a>
     <a class="spread-option easing" (click)="this.ticker.options.itm = 4; this.ticker.sortStrikes();" [class.active]="this.ticker.options.itm === 4">
@@ -57,4 +53,8 @@
       Sell
     </a>
   </div>
+
+  <a class="publish-button easing" (click)="this.submit();">
+    Publish Spread
+  </a>
 </div>

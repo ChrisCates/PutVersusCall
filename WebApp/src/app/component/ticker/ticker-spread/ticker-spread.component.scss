@@ -8,7 +8,7 @@ div.spread-options {
 
     a.spread-option {
         position: relative;
-        display: flex;
+        display: none;
         align-items: center;
         padding: 0 15px;
         margin: 0 7.5px;
@@ -16,6 +16,7 @@ div.spread-options {
         background: $bg3;
         border-radius: 5px;
         cursor: pointer;
+        &.visible { display: flex; }
         &:hover { background: $bg2; }
         &.active { background: $bg5; }
 

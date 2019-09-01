@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivationEnd } from '@angular/router';
+
 import { SessionService } from '../../../service/session.service';
 import { TickerService } from '../ticker.service';
 
@@ -36,14 +38,14 @@ export class TickerSpreadPublishComponent implements OnInit {
     },
   };
 
-  constructor(public session: SessionService, public ticker: TickerService) { }
+  constructor(private router: Router, public session: SessionService, public ticker: TickerService) { }
 
   ngOnInit() {
     this.form.symbol = this.ticker.symbol;
     this.form.expiry = this.ticker.activeExpiry;
   }
 
-  public update(strike, type, position) {
+  public update(strike: string, type, position) {
     if (!this.form.data[strike]) {
       this.form.data[strike] = {};
     }
@@ -54,7 +56,7 @@ export class TickerSpreadPublishComponent implements OnInit {
     this.form.data[strike][type].position = position;
   }
 
-  public updateAmount($event, strike, type) {
+  public updateAmount($event, strike: string, type) {
     if (!this.form.data[strike]) {
       this.form.data[strike] = {};
     }
@@ -65,7 +67,7 @@ export class TickerSpreadPublishComponent implements OnInit {
     this.form.data[strike][type].amount = $event.target.value;
   }
 
-  public isActive(strike, type, position) {
+  public isActive(strike: string, type, position) {
     if (this.form.data[strike]) {
       if (this.form.data[strike][type]) {
         if (this.form.data[strike][type].position === position) {
@@ -86,12 +88,23 @@ export class TickerSpreadPublishComponent implements OnInit {
     this.state.form.message = '';
 
     try {
-      await superagent
+      const data: any = {};
+
+      Object.keys(this.form.data).forEach(key => {
+        const item = this.form.data[key];
+        const formattedKey = key.replace('.', '-');
+        data[formattedKey] = item;
+      });
+
+      this.form.data = data;
+
+      const payload = await superagent
         .post(`${env.api}/spread`)
         .send(this.form)
         .withCredentials();
 
       this.reset();
+      this.router.navigateByUrl(`/spread/${payload.body.response.symbol.toUpperCase()}/${payload.body.response._id}`);
     } catch (error) {
       this.state.form.error = true;
       if (error.response) {

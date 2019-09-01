@@ -5,7 +5,7 @@
       <h2>A place to discuss stock prices and their option chains</h2>
     </div>
 
-    <div class="index-buttons">
+    <div class="index-buttons" [class.visible]="!this.session.active">
       <a class="index-button easing" (click)="this.index.popup = true; this.index.tab = true;">
         Login
       </a>
