@@ -4,6 +4,7 @@ import { Router, ActivationEnd } from '@angular/router';
 import * as superagent from 'superagent';
 import { environment as env } from '../../../environments/environment';
 
+import { SessionService } from '../../service/session.service';
 import { SearchService } from '../search/search.service';
 
 @Injectable({
@@ -53,7 +54,7 @@ export class SpreadService {
     },
   };
 
-  constructor(private router: Router, private search: SearchService) {
+  constructor(private router: Router, private session: SessionService, private search: SearchService) {
     this.router.events.subscribe(async event => {
       if (event instanceof ActivationEnd) {
         if (event.snapshot.routeConfig.path === 'spread/:symbol/:spread_id') {
@@ -70,6 +71,8 @@ export class SpreadService {
         }
       }
     });
+
+    this.session.socket.on(`spread-message`, message => { this.messages.unshift(message); });
   }
 
   public async get() {

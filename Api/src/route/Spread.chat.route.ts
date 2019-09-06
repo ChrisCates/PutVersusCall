@@ -22,7 +22,15 @@ export async function CreateSpreadChat(req, res) {
         const NewSpreadChat = new SpreadChat(NewSpreadChatObject);
         await NewSpreadChat.save();
 
-        routeResponse.response = NewSpreadChat;
+        routeResponse.response = await SpreadChat
+            .findOne({ _id: NewSpreadChat._id })
+            .populate({
+                path: 'user',
+                model: 'User',
+                select: 'username tagline photo'
+            });
+
+        req.io.to(`spread-${req.body.spread}`).emit('spread-message', routeResponse.response);
     } catch (error) {
         console.log(error);
         routeResponse.code = 500;

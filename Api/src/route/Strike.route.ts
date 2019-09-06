@@ -30,9 +30,18 @@ export async function CreateStrike(req, res) {
         };
 
         const NewStrike = new Strike(NewStrikeObject);
-        await NewStrike.save();
+        await NewStrike.save()
 
-        routeResponse.response = NewStrike;
+        routeResponse.response = await Strike
+            .findOne({ _id: NewStrike._id })
+            .populate({
+                path: 'user',
+                model: 'User',
+                select: 'username tagline photo'
+            });
+
+        req.io.to(`symbol-${req.body.symbol}`).emit('strike', routeResponse.response);
+        req.io.to(`home`).emit('home-strike', routeResponse.response);
     } catch (error) {
         console.log(error);
         routeResponse.code = 500;
@@ -50,11 +59,6 @@ export async function GetStrikes(req, res) {
             .find({
                 symbol: req.query.symbol.toLowerCase(),
                 expiry: req.query.expiry,
-            })
-            .populate({
-                path: 'user',
-                model: 'User',
-                select: 'username tagline photo'
             });
     } catch (error) {
         console.log(error);

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 
+import { SessionService } from '../../service/session.service';
 import { ValidationService } from '../../service/validation.service';
 
 import * as superagent from 'superagent';
@@ -62,8 +63,10 @@ export class IndexService {
   public spreads = [];
   public chats = [];
 
-  constructor(private router: Router, public validation: ValidationService) {
-
+  constructor(private router: Router, private session: SessionService, public validation: ValidationService) {
+    this.session.socket.on(`home-strike`, strike => { this.strikes.unshift(strike); });
+    this.session.socket.on(`home-message`,  message => { this.chats.unshift(message); });
+    this.session.socket.on(`home-spread`,  spread => { this.spreads.unshift(spread); });
   }
 
   public async recentChats() {

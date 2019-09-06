@@ -40,8 +40,11 @@ app.use(BodyParser.urlencoded({ extended: true }));
 Configure(app);
 InitRoutes(app);
 
+import { RegisterSocket } from './Socket';
+
 if (!testing) {
     server.listen(port);
+    RegisterSocket(io);
     console.log(`\n[ENV]\t\t ${env}`.green.bold);
     console.log(`[PORT]\t\t ${port}`.green.bold);
     console.log(`[STARTED]\t`.green.bold, `PUTVERSUSCALL API`, `\n`);

@@ -25,7 +25,15 @@ export async function CreateSpread(req, res) {
         const NewSpread = new Spread(NewSpreadObject);
         await NewSpread.save();
 
-        routeResponse.response = NewSpread;
+        routeResponse.response = await Spread
+            .findOne({ _id: NewSpread._id })
+            .populate({
+                path: 'user',
+                model: 'User',
+                select: 'username tagline photo'
+            });
+
+        req.io.to(`home`).emit('home-spread', routeResponse.response);
     } catch (error) {
         console.log(error);
         routeResponse.code = 500;

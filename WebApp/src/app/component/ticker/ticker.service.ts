@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router, ActivationEnd } from '@angular/router';
 
+import { SessionService } from '../../service/session.service';
 import { SearchService } from '../search/search.service';
 
 import * as superagent from 'superagent';
@@ -80,7 +81,7 @@ export class TickerService {
     }
   };
 
-  constructor(private router: Router, private search: SearchService) {
+  constructor(private router: Router, private search: SearchService, private session: SessionService) {
     this.router.events.subscribe(async event => {
       if (event instanceof ActivationEnd) {
         if (event.snapshot.routeConfig.path === 'ticker/:symbol') {
@@ -96,6 +97,9 @@ export class TickerService {
         }
       }
     });
+
+    this.session.socket.on(`message`, message => { this.chat.unshift(message); });
+    this.session.socket.on(`strike`, strike => { this.strikes.unshift(strike); });
   }
 
   public async getOptions() {
@@ -189,8 +193,6 @@ export class TickerService {
 
       this.state.submitChat.state = 1;
       this.state.submitChat.message = '';
-
-      this.getChat();
     } catch (error) {
       if (error.response) {
         this.state.submitChat.state = -1;
@@ -377,8 +379,6 @@ export class TickerService {
 
       this.state.submitStrike.state = 1;
       this.state.submitStrike.message = '';
-
-      this.getStrikes();
     } catch (error) {
       if (error.response) {
         this.state.submitStrike.state = -1;

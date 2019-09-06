@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivationEnd } from '@angular/router';
 
 import * as superagent from 'superagent';
 import { environment as env } from '../../environments/environment';
@@ -12,6 +12,7 @@ import * as io from 'socket.io-client';
 export class SessionService {
 
   public socket = io(`${env.api}`);
+  public rooms = [];
 
   public active = false;
   public data = {
@@ -33,6 +34,38 @@ export class SessionService {
 
   constructor(private router: Router) {
     this.get();
+
+    this.router.events.subscribe(async event => {
+      if (event instanceof ActivationEnd) {
+        if (event.snapshot.routeConfig.path === '') {
+          this.joinRoom('home');
+        } else {
+          this.leaveRoom('home');
+        }
+
+        if (event.snapshot.routeConfig.path === 'ticker/:symbol') {
+          this.joinRoom('symbol', event.snapshot.params.symbol);
+        } else {
+          this.leaveRoom('symbol', event.snapshot.params.symbol);
+        }
+
+        if (event.snapshot.routeConfig.path === 'spread/:symbol/:spread_id') {
+          this.joinRoom('spread', event.snapshot.params.spread_id);
+        } else {
+          this.leaveRoom('spread', event.snapshot.params.spread_id);
+        }
+      }
+    });
+  }
+
+  private joinRoom(room, id = '') {
+    this.socket.emit(room, { action: 'join', id });
+    this.rooms.push({ room, id });
+  }
+
+  public leaveRoom(room, id = '') {
+    this.socket.emit(room, { action: 'leave', id });
+    this.rooms = this.rooms.filter(_room => _room.room !== room && _room.id !== id);
   }
 
   public photoUrl(url = null) {

@@ -32,7 +32,8 @@ export async function CreateChat(req, res) {
                 select: 'username tagline photo'
             });
 
-        req.io.to(req.body.symbol.toLowerCase()).emit('message', routeResponse.response);
+        req.io.to(`symbol-${req.body.symbol}`).emit('message', routeResponse.response);
+        req.io.to(`home`).emit('home-message', routeResponse.response);
     } catch (error) {
         console.log(error);
         routeResponse.code = 500;
