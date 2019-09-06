@@ -30,4 +30,15 @@ div.ticker-header {
             font-weight: 300;
         }
     }
+
+    @media (max-width: $mobile) {
+        height: auto;
+        flex-wrap: wrap;
+        padding: 0;
+        div.ticker-column {
+            width: 100%;
+            text-align: center;
+            padding: 15px 15px 0px 15px;
+        }
+    }
 }

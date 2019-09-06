@@ -18,4 +18,16 @@ div.options-option-wrap {
         &:hover { background: $bg2; }
         &.active { background: $bg5; }
     }
+
+    @media (max-width: $mobile) {
+        height: auto;
+        flex-wrap: wrap;
+        padding: 10px;
+
+        a.options-option {
+            margin: 10px;
+            width: calc(100% - 20px);
+            justify-content: center;
+        }
+    }
 }

@@ -12,6 +12,10 @@ div.spread {
     border-radius: 5px;
     background: $bg3;
 
+    @media (max-width: $mobile) {
+        width: calc(100% - 30px);
+    }
+
     h4 {
         font-size: 24px;
         margin: 0 0 5px 0;

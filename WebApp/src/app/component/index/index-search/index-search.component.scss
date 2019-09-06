@@ -5,6 +5,11 @@ div.index-columns {
     div.index-column {
         width: calc(100% / 3);
     }
+
+    @media (max-width: $mobile) {
+        flex-wrap: wrap;
+        div.index-column { width: 100%; }
+    }
 }
 
 h2 {
@@ -12,14 +17,21 @@ h2 {
     font-weight: 300;
     text-align: center;
     margin: 0 0 15px 0;
+
+    @media (max-width: $mobile) {
+        font-size: 18px;
+        margin: 0;
+    }
 }
 
 div.striker-list {
     width: 100%;
+    max-height: calc(100vh - 365px);
+    overflow: hidden;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    padding: 15px 0 45px 0;
+    padding: 15px 0;
     div.striker {
         background: $bg4;
         width: 100%;
@@ -69,6 +81,13 @@ div.striker-list {
                     border-radius: 5px;
                     display: none;
                     &.active { display: flex; }
+                }
+
+                @media (max-width: $mobile) {
+                    &.metadata { flex-wrap: wrap; }
+                    span {
+                        width: 100%;
+                    }
                 }
             }
         }

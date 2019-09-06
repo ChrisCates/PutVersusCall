@@ -1,11 +1,14 @@
 <header>
   <div class="wrap">
     <a routerLink="/">
-      <img src="/assets/logo.png"/>
       <h1>📉 Put versus Call 📈</h1>
     </a>
 
-    <div class="menu">
+    <a class="menu-button easing" (click)="this.toggle = !this.toggle" [class.active]="this.toggle">
+      <i class="fas fa-ellipsis-h"></i>
+    </a>
+
+    <div class="menu easing" (click)="this.toggle = false;" [class.active]="this.toggle">
       <a class="menu-item easing" routerLink="/" [class.active]="!this.session.active">
         Home
         <i class="fas fa-home"></i>

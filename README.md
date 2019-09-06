@@ -10,8 +10,7 @@
 
 Put versus Call uses the Tradier API to get option and strike prices. If you intend on deploying your own PvC head on over to Tradier.com for an API key that's completely free.
 
-Currently this is an early release version of the web app that still needs mobile responsiveness sorted out, and, more discussion revolved around it's core functionality. Happy to take criticism in regards to the codebase, but, for the most part it's a standard Typescript, Mongo, Angular application.
-
+Currently this is an early release version of the web app. I have no intention of seriously marketing the product in it's current state. The web app's intention is to start conversation on how to make an effective website to discuss Options trading. If you do like the app and want something, feel free to open an issue directly on Github.
 
 ### Deploying the Angular Web App
 

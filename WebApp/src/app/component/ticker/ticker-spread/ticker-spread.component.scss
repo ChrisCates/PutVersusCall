@@ -2,8 +2,9 @@
 
 div.spread-options {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
-    height: 70px;
+    min-height: 70px;
     padding: 0px 7.5px;
 
     a.spread-option {
@@ -43,6 +44,11 @@ div.spread-options {
                 padding: 0 10px;
                 &:hover { background: $bg5; }
             }
+        }
+
+        @media (max-width: $mobile) {
+            width: 100%;
+            margin: 5px 0;
         }
     }
 

@@ -27,4 +27,36 @@ footer {
         padding: 15px 30px;
         color: $fg1;
     }
+
+    @media (max-width: $mobile) {
+        height: auto;
+        div.wrap {
+            display: block;
+            height: auto;
+
+            h1 {
+                text-align: left;
+                font-size: 18px;
+                padding: 10px 25px;
+            }
+
+            div.link-roll {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                a.link {
+                    display: flex;
+                    justify-content: space-between;
+                    width: 320px;
+                    padding: 10px 0;
+                    font-size: 12px;
+                    font-weight: bold;
+                    i {
+                        width: 30px;
+                    }
+                }
+            }
+        }
+    }
 }

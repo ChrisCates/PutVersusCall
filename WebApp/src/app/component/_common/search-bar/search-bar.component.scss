@@ -3,8 +3,8 @@
 div.index-search {
     display: flex;
     justify-content: center;
-    margin: 15px;
-    width: calc(100% - 30px);
+    padding: 15px;
+    width: 100%;
     position: relative;
 
     input {
@@ -59,5 +59,17 @@ div.index-search {
         color: $fg1;
         cursor: pointer;
         &:hover { background: $bg5; }
+    }
+
+    @media (max-width: $mobile) {
+        flex-wrap: wrap;
+        input {
+            margin: 0 0 15px 0;
+            width: 100%;
+            max-width: 100%;
+        }
+        a.search-button {
+            width: 100%;
+        }
     }
 }

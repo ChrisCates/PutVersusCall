@@ -61,6 +61,7 @@ div.conversation-wrap {
 
             div.chat-select {
                 position: absolute;
+                z-index: 111;
                 left: 0;
                 top: 40px;
                 width: 100%;
@@ -82,6 +83,17 @@ div.conversation-wrap {
                     padding: 0 10px;
                     &:hover { background: $bg5; }
                 }
+            }
+        }
+
+        @media (max-width: $mobile) {
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 10px;
+
+            a.chat-input-button {
+                width: 100%;
+                margin: 0 0 10px 0;
             }
         }
     }
@@ -153,9 +165,13 @@ div.chat-message {
     h4 {
         font-size: 18px;
         font-weight: 700;
+        br { display: none; }
         span {
             font-size: 12px;
             font-weight: bold;
+        }
+        @media (max-width: $mobile) {
+            br { display: block; }
         }
     }
 
@@ -177,6 +193,12 @@ div.chat-message {
             font-size: 14px;
             font-weight: 400;
             margin: 5px 0;
+        }
+        @media (max-width: $mobile) {
+            flex-wrap: wrap;
+            span {
+                width: 100%;
+            }
         }
     }
 

@@ -53,6 +53,18 @@ div.spread-options {
             font-size: 12px;
             font-weight: bold;
         }
+
+        @media (max-width: $mobile) {
+            flex-wrap: wrap;
+            height: auto;
+            min-height: auto;
+
+            a.spread-option {
+                width: 100%;
+                margin: 5px 0;
+                justify-content: center;
+            }
+        }
     }
 }
 
@@ -137,5 +149,24 @@ div.strike-price {
         &.active { background: $bg5; }
         &.active-red { background: $red; }
         &.active-green { background: $green; }
+    }
+
+    @media (max-width: $mobile) {
+        p.sp {
+            width: 50px;
+            font-size: 10px;
+            padding: 0 5px;
+        }
+        a.sp-button {
+            width: 30px;
+            height: 20px;
+            font-size: 10px;
+            margin: 0 5px;
+        }
+        input {
+            width: 40px;
+            height: 20px;
+            font-size: 10px;
+        }
     }
 }

@@ -84,6 +84,13 @@ div.spread-data {
         width: 480px;
         padding-bottom: 90px;
     }
+
+    @media(max-width: $mobile) {
+        flex-wrap: wrap;
+        div.strike-prices, div.comments-section {
+            width: 100%;
+        }
+    }
 }
 
 div.strike-price {
@@ -124,6 +131,32 @@ div.strike-price {
         &.active { background: $bg5; }
         &.active-red { background: $red; }
         &.active-green { background: $green; }
+    }
+
+    @media (max-width: $mobile) {
+        justify-content: center;
+        p.sp {
+            width: 50px;
+            font-size: 10px;
+            padding: 0 5px;
+        }
+        a.sp-button {
+            width: 60px;
+            padding: 0;
+            height: 20px;
+            font-size: 10px;
+            margin: 0 5px;
+        }
+        input {
+            width: 40px;
+            height: 20px;
+            font-size: 10px;
+        }
+        a.sp-label {
+            padding: 0 5px;
+            font-size: 10px;
+            &:last-of-type { display: none; }
+        }
     }
 }
 
