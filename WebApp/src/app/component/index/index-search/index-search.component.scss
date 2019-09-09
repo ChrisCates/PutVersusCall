@@ -1,9 +1,37 @@
 @import "../../../template.scss";
 
+div.tabs {
+    display: none;
+    justify-content: center;
+    padding: 0 10px;
+    @media (max-width: $mobile) {
+        display: flex;
+    }
+
+    a.tab {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: calc(33.33% - 10px);
+        height: 30px;
+        margin: 0 5px;
+        border-radius: 5px;
+        background: $bg2;
+        color: $fg1;
+        font-size: 10px;
+        &.active { background: $bg5; }
+    }
+}
+
 div.index-columns {
     display: flex;
+
     div.index-column {
         width: calc(100% / 3);
+        @media (max-width: $mobile) {
+            display: none;
+            &.active { display: block; }
+        }
     }
 
     @media (max-width: $mobile) {
@@ -19,6 +47,7 @@ h2 {
     margin: 0 0 15px 0;
 
     @media (max-width: $mobile) {
+        display: none;
         font-size: 18px;
         margin: 0;
     }
@@ -26,12 +55,14 @@ h2 {
 
 div.striker-list {
     width: 100%;
-    max-height: calc(100vh - 365px);
+    height: calc(100vh - 365px);
+    min-height: 480px;
     overflow: hidden;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
     padding: 15px 0;
+
     div.striker {
         background: $bg4;
         width: 100%;

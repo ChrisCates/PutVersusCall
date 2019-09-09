@@ -13,6 +13,9 @@ export class IndexSearchComponent implements OnInit {
 
   public moment = moment;
 
+  // Tab options: votes, spreads, comments
+  public tab = 'votes';
+
   constructor(public session: SessionService, public index: IndexService) { }
 
   ngOnInit() {

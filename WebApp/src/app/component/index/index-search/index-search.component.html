@@ -1,7 +1,18 @@
-<div class="index-columns">
-  <div class="index-column">
-    <h2>Recent Votes</h2>
+<div class="tabs">
+  <a class="tab easing" (click)="this.tab = 'votes'" [class.active]="this.tab === 'votes'">
+    Recent Votes
+  </a>
+  <a class="tab easing" (click)="this.tab = 'spreads'" [class.active]="this.tab === 'spreads'">
+    Recent Spreads
+  </a>
+  <a class="tab easing" (click)="this.tab = 'comments'" [class.active]="this.tab === 'comments'">
+    Recent Comments
+  </a>
+</div>
 
+<div class="index-columns">
+  <div class="index-column" [class.active]="this.tab === 'votes'">
+    <h2>Recent Votes</h2>
     <div class="striker-list">
       <div class="striker" *ngFor="let striker of this.index.strikes; let i = index;" routerLink="/ticker/{{striker.symbol.toUpperCase()}}">
         <div class="striker-content">
@@ -25,7 +36,7 @@
       </div>
     </div>
   </div>
-  <div class="index-column">
+  <div class="index-column" [class.active]="this.tab === 'spreads'">
     <h2>Recent Spreads</h2>
     <div class="striker-list">
       <div class="striker" *ngFor="let striker of this.index.spreads; let i = index;" routerLink="/spread/{{striker.symbol.toUpperCase()}}/{{striker._id}}">
@@ -50,7 +61,7 @@
       </div>
     </div>
   </div>
-  <div class="index-column">
+  <div class="index-column" [class.active]="this.tab === 'comments'">
     <h2>Recent Comments</h2>
     <div class="striker-list">
       <div class="striker" *ngFor="let striker of this.index.chats; let i = index;" routerLink="/ticker/{{striker.symbol.toUpperCase()}}">
