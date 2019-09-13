@@ -16,8 +16,10 @@ import { environment as env } from '../../../../environments/environment';
 })
 export class TickerSpreadPublishComponent implements OnInit {
 
-  public select = {
+  public select: any = {
     one: false,
+    put: {},
+    call: {},
   };
 
   public moment = moment;
@@ -45,6 +47,10 @@ export class TickerSpreadPublishComponent implements OnInit {
     this.form.expiry = this.ticker.activeExpiry;
   }
 
+  public toggleSelect(type, index) {
+    this.select[type][index] = !this.select[type][index];
+  }
+
   public update(strike: string, type, position) {
     if (!this.form.data[strike]) {
       this.form.data[strike] = {};
@@ -65,6 +71,35 @@ export class TickerSpreadPublishComponent implements OnInit {
     }
 
     this.form.data[strike][type].amount = $event.target.value;
+  }
+
+  public updateExpiry(expiry, strike, type) {
+    if (!this.form.data[strike]) {
+      this.form.data[strike] = {};
+    }
+    if (!this.form.data[strike][type]) {
+      this.form.data[strike][type] = {};
+    }
+    this.form.data[strike][type].expiry = expiry;
+  }
+
+  public getExpiry(strike, type) {
+    if (this.form.data[strike]) {
+      if (this.form.data[strike][type]) {
+        if (this.form.data[strike][type].expiry) {
+          return this.form.data[strike][type].expiry;
+        }
+      }
+    }
+    return this.ticker.activeExpiry;
+  }
+
+  public clearStrike(strike, type) {
+    if (this.form.data[strike]) {
+      if (this.form.data[strike][type]) {
+        delete this.form.data[strike][type];
+      }
+    }
   }
 
   public isActive(strike: string, type, position) {

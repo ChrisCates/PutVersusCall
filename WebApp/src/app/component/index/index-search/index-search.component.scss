@@ -55,8 +55,7 @@ h2 {
 
 div.striker-list {
     width: 100%;
-    height: calc(100vh - 365px);
-    min-height: 480px;
+    max-height: calc(100vh - 365px);
     overflow: hidden;
     display: flex;
     justify-content: center;

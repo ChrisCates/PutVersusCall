@@ -18,31 +18,6 @@ div.spread-options {
         cursor: pointer;
         &:hover { background: $bg2; }
         &.active { background: $bg5; }
-
-        div.spread-select {
-            position: absolute;
-            left: 0;
-            top: 40px;
-            width: 100%;
-            border-radius: 5px;
-            background: $bg3;
-            overflow: hidden;
-            opacity: 0;
-            pointer-events: none;
-            &.active {
-                opacity: 1;
-                pointer-events: inherit;
-            }
-
-            a.select-option {
-                display: flex;
-                align-items: center;
-                width: 100%;
-                height: 30px;
-                padding: 0 10px;
-                &:hover { background: $bg5; }
-            }
-        }
     }
 
     &.smaller {
@@ -117,6 +92,35 @@ div.strike-price {
     justify-content: center;
     width: 100%;
     padding: 15px 0;
+    position: relative;
+
+    div.sp-buttons {
+        div.sp-button-row {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            &.right {
+                justify-content: flex-start;
+            }
+        }
+    }
+
+    a.clear-button {
+        width: 60px;
+        height: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 5px;
+        background: $bg3;
+        color: $fg1;
+        font-size: 12px;
+        cursor: pointer;
+        &:hover {
+            background: $bg4;
+        }
+    }
+
     input {
         width: 90px;
         height: 30px;
@@ -128,6 +132,7 @@ div.strike-price {
         text-align: center;
         padding-left: 5px;
     }
+
     p.sp {
         font-size: 18px;
         font-weight: bold;
@@ -135,20 +140,54 @@ div.strike-price {
         width: 90px;
         text-align: center;
     }
+
     a.sp-button {
         display: flex;
         align-items: center;
         justify-content: center;
+        position: relative;
         width: 90px;
         height: 30px;
         border-radius: 5px;
         background: $bg3;
-        margin: 0 15px;
+        margin: 5px 15px;
         cursor: pointer;
         &:hover { background: $bg2; }
         &.active { background: $bg5; }
         &.active-red { background: $red; }
         &.active-green { background: $green; }
+        &.smaller {
+            font-size: 9px;
+            i {
+                margin: 0 2.5px 1px 0;
+            }
+        }
+    }
+
+    div.spread-select {
+        position: absolute;
+        left: 0;
+        top: 40px;
+        width: 100%;
+        border-radius: 5px;
+        background: $bg4;
+        overflow: hidden;
+        z-index: 11;
+        opacity: 0;
+        pointer-events: none;
+        &.active {
+            opacity: 1;
+            pointer-events: inherit;
+        }
+
+        a.select-option {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            height: 30px;
+            padding: 0 10px;
+            &:hover { background: $bg5; }
+        }
     }
 
     @media (max-width: $mobile) {

@@ -43,6 +43,14 @@ export class SpreadRouteComponent implements OnInit {
     }
   }
 
+  public getExpiry(strike, type) {
+    if (strike.data[type]) {
+      return strike.data[type].expiry;
+    } else {
+      return 'N/A';
+    }
+  }
+
   public async updateSpread(spread) {
     try {
       await superagent

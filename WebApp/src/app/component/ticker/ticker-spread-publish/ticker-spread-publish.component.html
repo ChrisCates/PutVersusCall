@@ -7,15 +7,6 @@
   </div>
 
   <div class="spread-options smaller">
-    <a class="spread-option easing" (click)="this.select.one = !this.select.one">
-        For Expiry: {{this.form.expiry ? this.form.expiry : this.ticker.activeExpiry}}
-        <div class="spread-select easing" [class.active]="this.select.one">
-            <a
-            class="select-option easing"
-            *ngFor="let expiry of this.ticker.options.expiry"
-            (click)="this.form.expiry = expiry; this.ticker.activeExpiry = expiry; this.ticker.getOptions();">{{expiry}}</a>
-        </div>
-    </a>
     <a class="spread-option easing" (click)="this.ticker.options.itm = 4; this.ticker.sortStrikes();" [class.active]="this.ticker.options.itm === 4">
       4 from ITM
     </a>
@@ -31,27 +22,65 @@
   </div>
 
   <div class="strike-price easing" *ngFor="let strike of this.ticker.options.itmStrikes; let i = index;">
-    <a class="sp-button easing" (click)="this.update(strike, 'put', 'sell')" [class.active-red]="this.isActive(strike, 'put', 'sell')">
-      Sell
-    </a>
-    <a class="sp-button easing" (click)="this.update(strike, 'put', 'buy')" [class.active-green]="this.isActive(strike, 'put', 'buy')">
-      Buy
-    </a>
-    <a class="sp-button easing">
-      Put
-    </a>
+    <div class="sp-buttons">
+      <div class="sp-button-row">
+        <a class="clear-button easing" (click)="this.clearStrike(strike, 'put')">
+          Clear
+        </a>
+        <a class="sp-button easing">
+          Put
+        </a>
+        <a class="sp-button smaller easing" (click)="this.toggleSelect('put', i)">
+          <i class="far fa-calendar-alt"></i>
+          {{this.getExpiry(strike, 'put')}}
+          <div class="spread-select easing" [class.active]="this.select['put'][i]">
+              <a
+              class="select-option easing"
+              *ngFor="let expiry of this.ticker.options.expiry"
+              (click)="this.updateExpiry(expiry, strike, 'put')">{{expiry}}</a>
+          </div>
+        </a>
+      </div>
+      <div class="sp-button-row">
+        <a class="sp-button easing" (click)="this.update(strike, 'put', 'sell')" [class.active-red]="this.isActive(strike, 'put', 'sell')">
+          Sell
+        </a>
+        <a class="sp-button easing" (click)="this.update(strike, 'put', 'buy')" [class.active-green]="this.isActive(strike, 'put', 'buy')">
+          Buy
+        </a>
+      </div>
+    </div>
     <input type="number" placeholder="#" (input)="this.updateAmount($event, strike, 'put')"/>
     <p class="sp">{{strike}}</p>
     <input type="number" placeholder="#" (input)="this.updateAmount($event, strike, 'call')"/>
-    <a class="sp-button easing">
-      Call
-    </a>
-    <a class="sp-button easing" (click)="this.update(strike, 'call', 'buy')" [class.active-green]="this.isActive(strike, 'call', 'buy')">
-      Buy
-    </a>
-    <a class="sp-button easing" (click)="this.update(strike, 'call', 'sell')" [class.active-red]="this.isActive(strike, 'call', 'sell')">
-      Sell
-    </a>
+    <div class="sp-buttons">
+      <div class="sp-button-row right">
+        <a class="sp-button smaller easing" (click)="this.toggleSelect('call', i)">
+          <i class="far fa-calendar-alt"></i>
+          {{this.getExpiry(strike, 'call')}}
+          <div class="spread-select easing" [class.active]="this.select['call'][i]">
+              <a
+              class="select-option easing"
+              *ngFor="let expiry of this.ticker.options.expiry"
+              (click)="this.updateExpiry(expiry, strike, 'call')">{{expiry}}</a>
+          </div>
+        </a>
+        <a class="sp-button easing">
+          Call
+        </a>
+        <a class="clear-button easing" (click)="this.clearStrike(strike, 'call')">
+          Clear
+        </a>
+      </div>
+      <div class="sp-button-row right">
+        <a class="sp-button easing" (click)="this.update(strike, 'call', 'buy')" [class.active-green]="this.isActive(strike, 'call', 'buy')">
+          Buy
+        </a>
+        <a class="sp-button easing" (click)="this.update(strike, 'call', 'sell')" [class.active-red]="this.isActive(strike, 'call', 'sell')">
+          Sell
+        </a>
+      </div>
+    </div>
   </div>
 
   <a class="publish-button easing" (click)="this.submit();">

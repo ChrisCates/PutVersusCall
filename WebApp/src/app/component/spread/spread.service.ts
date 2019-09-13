@@ -87,7 +87,7 @@ export class SpreadService {
       this.strikes = [];
 
       if (this.spread.data) {
-        Object.keys(this.spread.data).reverse().forEach(key => {
+        Object.keys(this.spread.data).sort().reverse().forEach(key => {
           this.strikes.push({
             strike: key.replace('-', '.'),
             data: this.spread.data[key],

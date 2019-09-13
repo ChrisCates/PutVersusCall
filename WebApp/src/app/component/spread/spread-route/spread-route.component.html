@@ -46,6 +46,10 @@
     <div class="spread-data">
       <div class="strike-prices">
         <div class="strike-price easing" *ngFor="let strike of this.spread.strikes">
+          <a class="sp-button smaller easing">
+            <i class="far fa-calendar-alt"></i>
+            {{this.getExpiry(strike, 'put')}}
+          </a>
           <a class="sp-button easing" [class.active-red]="this.position(strike, 'put') === 'SELL'" [class.active-green]="this.position(strike, 'put') === 'BUY'">
             {{this.position(strike, 'put')}}
           </a>
@@ -58,6 +62,10 @@
           </a>
           <a class="sp-button easing" [class.active-red]="this.position(strike, 'call') === 'SELL'" [class.active-green]="this.position(strike, 'call') === 'BUY'">
             {{this.position(strike, 'call')}}
+          </a>
+          <a class="sp-button smaller easing">
+            <i class="far fa-calendar-alt"></i>
+            {{this.getExpiry(strike, 'call')}}
           </a>
         </div>
       </div>
