@@ -29,3 +29,24 @@ Currently the WebApp just uses a simple Elastic Beanstalk autoscaling group. You
 eb init
 eb deploy
 ```
+
+### Configuring for IPFS
+
+Get IPFS CLI first
+
+```bash
+yarn global add ipfs
+```
+
+Then start a Daemon
+
+```bash
+ipfs daemon
+```
+
+Set the IPFS URL for the API
+
+```bash
+export IPFS_URL=''
+export IPFS_API_URL=''
+```

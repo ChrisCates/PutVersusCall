@@ -70,7 +70,7 @@ export class SessionService {
 
   public photoUrl(url = null) {
     if (url) {
-      return `${env.api}/${url}`;
+      return `${url}`;
     } else {
       return `/assets/placeholder.photo.png`;
     }
